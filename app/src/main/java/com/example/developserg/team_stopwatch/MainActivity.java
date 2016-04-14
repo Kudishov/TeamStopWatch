@@ -18,8 +18,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        listView = (ListView) findViewById(R.id.lv_friends);
-        createFriend();
+        listView = (ListView) findViewById(R.id.lv_users);
+        createUsers();
         fillList();
     }
 
@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         listView.setAdapter(new UsersAdapter(usersArrayList, this));
     }
 
-    private void createFriend() {
+    private void createUsers() {
         usersArrayList = new ArrayList<>();
         Users p = new Users();
         p.setName("Serega");
