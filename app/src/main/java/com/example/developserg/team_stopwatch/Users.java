@@ -1,12 +1,19 @@
 package com.example.developserg.team_stopwatch;
 
-import java.util.ArrayList;
-
 /**
  * Created by DevelopSerg on 13.04.2016.
  */
 public class Users {
     private String name;
+    public boolean start;
+
+    public boolean isStart() {
+        return start;
+    }
+
+    public void setIsStarted(boolean isStarted) {
+        this.start = isStarted;
+    }
 
     public Users() {
     }

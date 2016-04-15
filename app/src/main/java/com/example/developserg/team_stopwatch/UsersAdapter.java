@@ -5,13 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Chronometer;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
-/**
- * Created by DevelopSerg on 12.04.2016.
- */
 public class UsersAdapter extends BaseAdapter {
     private ArrayList<Users> usersArrayList;
     private Context context;
@@ -19,6 +17,7 @@ public class UsersAdapter extends BaseAdapter {
     public UsersAdapter(ArrayList<Users> usersArrayList, Context context) {
         this.usersArrayList = usersArrayList;
         this.context = context;
+
     }
 
     // Дергает ListView когда появляется потребность в выводе данных на экране
@@ -41,14 +40,16 @@ public class UsersAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) { //сверстать View, наполнить данными и вернуть
         Users p = usersArrayList.get(position); //получили доступ к данным
 
-        View friendView = convertView;
-        if (friendView == null) { //если мы получили новый элемент, то надо его создать
-            friendView = LayoutInflater.from(context).inflate(R.layout.user_layout, null);
+        View usersView = convertView;
+        if (usersView == null) { //если мы получили новый элемент, то надо его создать
+            usersView = LayoutInflater.from(context).inflate(R.layout.user_layout, null);
         }
 
-        TextView tvNname = (TextView) friendView.findViewById(R.id.name);
+        TextView tvNname = (TextView) usersView.findViewById(R.id.name);
         tvNname.setText(p.getName());
 
-        return friendView;
+        p.start = false;
+
+        return usersView;
     }
 }
