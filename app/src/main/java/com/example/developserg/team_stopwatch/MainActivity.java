@@ -1,5 +1,6 @@
 package com.example.developserg.team_stopwatch;
 
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,111 +16,66 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    public List<User> usersArrayList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        final List<User> usersArrayList = createUsers();
-        final ListView listView = (ListView) findViewById(R.id.list);
+        createUsers();
+        ListView listView = (ListView) findViewById(R.id.list);
+        assert listView != null;
         listView.setAdapter(new UserAdapter(usersArrayList, this));
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Chronometer chr = (Chronometer) view.findViewById(R.id.userChronometer);
                 ImageView ivStatus = (ImageView) view.findViewById(R.id.statusImage);
-//                User user = usersArrayList.get(position);
+                User user = usersArrayList.get(position);
 
-                for (User temp : usersArrayList) {
-                    Chronometer chrr = (Chronometer) view.findViewWithTag("chrono");
-                    temp.stopChrono();
-                    chrr.stop();
+                if (user.isStart()) {
+                    chr.stop();
+                    ivStatus.setImageResource(R.drawable.start);
+                    user.setFalse();
+                } else {
+                    ivStatus.setImageResource(R.drawable.stop);
+                    chr.setBase(SystemClock.elapsedRealtime());
+                    chr.start();
+                    user.setTrue();
                 }
-                chr.start();
-
-//                for (int i = 0; i < usersArrayList.size(); i++) {
-//                    Chronometer chrr = (Chronometer) view.findViewWithTag("chrono" + position);
-//                    chrr.stop();
-//                }
-//                if (user.isStart()) {
-//                    chr.stop();
-//                    ivStatus.setImageResource(R.drawable.start);
-//                    Toast.makeText(getApplicationContext(),
-//                            "таймер для " + (position + 1) + "остановился", Toast.LENGTH_SHORT).show();
-//                    user.setFalse();
-//                    for (int i = 0; i < usersArrayList.size(); i++) {
-//                        Chronometer chrr = (Chronometer) view.findViewWithTag("chrono" + position);
-//                        chrr.stop();
-//                    }
-////                    for (User userr : usersArrayList) {
-////
-//////                        userr.stopChrono();
-////                    }
-//                } else {
-//                    chr.start();
-//                    ivStatus.setImageResource(R.drawable.stop);
-//                    Toast.makeText(getApplicationContext(),
-//                            "таймер для " + (position + 1) + "запустился", Toast.LENGTH_SHORT).show();
-////                    for (int i = 0; i < usersArrayList.size(); i++) { //сбрасываем флаги
-////                        Users p = (Users) usersArrayList.get(position);
-////                        p.setFalse();
-////                    }
-//                    user.setTrue();
-//                }
             }
         });
     }
 
 
     private List createUsers() {
-        List<User> usersArrayList = new ArrayList<>();
-        User serega = new User();
-        serega.setName("Серега");
+        usersArrayList = new ArrayList<>();
+        Chronometer chr1 = new Chronometer(this);
+        Chronometer chr2 = new Chronometer(this);
+        Chronometer chr3 = new Chronometer(this);
+        Chronometer chr4 = new Chronometer(this);
+        Chronometer chr5 = new Chronometer(this);
+
+        User serega = new User("Серега", chr1);
+        serega.setChronoUser(chr1);
         usersArrayList.add(serega);
 
-        User vova = new User();
-        vova.setName("Вова");
-        usersArrayList.add(vova);
+        User boris = new User("Борис", chr2);
+        boris.setChronoUser(chr2);
+        usersArrayList.add(boris);
 
-        User denis = new User();
-        denis.setName("Денис");
-        usersArrayList.add(denis);
+        User ded = new User("Дед МОРОЗ", chr3);
+        ded.setChronoUser(chr3);
+        usersArrayList.add(ded);
 
-        User sasha = new User();
-        sasha.setName("Саша");
-        usersArrayList.add(sasha);
+        User superman = new User("SUPERMAN", chr3);
+        superman.setChronoUser(chr4);
+        usersArrayList.add(superman);
 
-        User ruslan = new User();
-        ruslan.setName("Руслан");
-        usersArrayList.add(ruslan);
+        User spider = new User("Spider Man", chr3);
+        spider.setChronoUser(chr5);
+        usersArrayList.add(spider);
 
-//        Users konstantin = new Users();
-//        konstantin.setName("Костя");
-//        usersArrayList.add(konstantin);
-//
-//        Users roma = new Users();
-//        roma.setName("Рома");
-//        usersArrayList.add(roma);
-//
-//        Users dimaR = new Users();
-//        dimaR.setName("Дима Р.");
-//        usersArrayList.add(dimaR);
-//
-//        Users dimaG = new Users();
-//        dimaG.setName("Дима Г.");
-//        usersArrayList.add(dimaG);
-//
-//        Users pashaA = new Users();
-//        pashaA.setName("Паша А.");
-//        usersArrayList.add(pashaA);
-//
-//        Users pashaP = new Users();
-//        pashaP.setName("Паша П.");
-//        usersArrayList.add(pashaP);
-//
-//        Users nikita = new Users();
-//        nikita.setName("Никита");
-//        usersArrayList.add(nikita);
         return usersArrayList;
     }
 }
-
