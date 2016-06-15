@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     public ListView listView;
     UserAdapter UA;
     Button addButton;
+    Button resetButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +31,21 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         createUsers();
         addButton = (Button)findViewById(R.id.button_add);
+        resetButton = (Button) findViewById(R.id.button_reset);
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onClickAdd(v);
+            }
+        });
+        resetButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (int i = 0; i < listView.getCount(); i++) {
+                    v = listView.getChildAt(i);
+                    Chronometer chrr = (Chronometer) v.findViewById(R.id.userChronometer);
+                    chrr.setBase(SystemClock.elapsedRealtime());
+                }
             }
         });
 
