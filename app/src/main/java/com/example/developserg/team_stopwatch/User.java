@@ -20,11 +20,11 @@ public class User {
     }
 
     public Chronometer getChronoUser() {
-        return chronoUser;
+        return this.chronoUser;
     }
 
     public void stopChrono (){
-        chronoUser.stop();
+        this.chronoUser.stop();
     }
 
     public void setChronoUser(Chronometer chronoUser) {
@@ -32,7 +32,7 @@ public class User {
     }
 
     public boolean isStart() {
-        return start;
+        return this.start;
     }
 
     public void setTrue() {
@@ -44,7 +44,7 @@ public class User {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
