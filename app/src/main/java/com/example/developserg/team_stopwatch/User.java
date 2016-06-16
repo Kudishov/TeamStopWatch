@@ -13,21 +13,18 @@ public class User {
     private String name;
     private boolean start;
     private Chronometer chronoUser;
+    private long timeWhenStopped = 0;
+
+    public long getTimeWhenStopped() {
+        return timeWhenStopped;
+    }
+
+    public void setTimeWhenStopped(long timeWhenStopped) {
+        this.timeWhenStopped = timeWhenStopped;
+    }
 
     public User(String name, Chronometer chronoUser) {
         this.name = name;
-        this.chronoUser = chronoUser;
-    }
-
-    public Chronometer getChronoUser() {
-        return this.chronoUser;
-    }
-
-    public void stopChrono (){
-        this.chronoUser.stop();
-    }
-
-    public void setChronoUser(Chronometer chronoUser) {
         this.chronoUser = chronoUser;
     }
 
