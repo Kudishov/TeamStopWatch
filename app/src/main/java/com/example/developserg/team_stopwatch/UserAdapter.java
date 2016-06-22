@@ -1,6 +1,7 @@
 package com.example.developserg.team_stopwatch;
 
 import android.content.Context;
+import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +37,6 @@ public class UserAdapter extends BaseAdapter {
     }
 
     @Override
-    //сверстать View, наполнить данными и вернуть
     public View getView(int position, View convertView, ViewGroup parent) {
         User p = userAdapterArrayList.get(position);
 
@@ -47,11 +47,6 @@ public class UserAdapter extends BaseAdapter {
 
         TextView tvNname = (TextView) usersView.findViewById(R.id.name);
         tvNname.setText(p.getName());
-
-        Chronometer viewChrono = (Chronometer) usersView.findViewById(R.id.userChronometer);
-        p.setChronoUser(viewChrono);
-        viewChrono.setTag("chrono");
-
         return usersView;
     }
 }

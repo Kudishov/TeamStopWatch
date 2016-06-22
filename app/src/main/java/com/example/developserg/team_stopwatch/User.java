@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.Chronometer;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by DevelopSerg on 13.04.2016.
@@ -12,29 +13,23 @@ public class User {
     private String name;
     private boolean start;
     private Chronometer chronoUser;
+    private long timeWhenStopped = 0;
 
-    public Chronometer getChronoUser() {
-        return chronoUser;
+    public long getTimeWhenStopped() {
+        return timeWhenStopped;
     }
 
-    public void stopChrono (){
-        chronoUser.stop();
+    public void setTimeWhenStopped(long timeWhenStopped) {
+        this.timeWhenStopped = timeWhenStopped;
     }
 
-    public void setChronoUser(Chronometer chronoUser) {
+    public User(String name, Chronometer chronoUser) {
+        this.name = name;
         this.chronoUser = chronoUser;
     }
 
-    public void setStart(boolean start) {
-        this.start = start;
-    }
-
     public boolean isStart() {
-        return start;
-    }
-
-    public void setIsStarted(boolean isStarted) {
-        this.start = isStarted;
+        return this.start;
     }
 
     public void setTrue() {
@@ -45,11 +40,8 @@ public class User {
         this.start = false;
     }
 
-    public User() {
-    }
-
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
